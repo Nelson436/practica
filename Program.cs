@@ -4,58 +4,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Numeros_primos
+namespace Numeros_de_mayor_a_menor
 {
     internal class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            Console.Write("Ingresa un número: ");
-            if (int.TryParse(Console.ReadLine(), out int limite) && limite >= 1)
+            int num1 = 0;
+            int num2 = 0;
+            int num3 = 0;
+
+            // Pedir al usuario que ingrese tres números
+            Console.WriteLine("Dame el primer número");
+            num1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Dame el segundo número");
+            num2 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Dame el tercer número");
+            num3 = Convert.ToInt32(Console.ReadLine());
+
+            // Llamar a los métodos para determinar el mayor y menor número
+            NumeroMayor(num1, num2, num3);
+            NumeroMenor(num1, num2, num3);
+
+            // Pausar la consola para que el usuario vea los resultados antes de cerrar
+            Console.WriteLine("\nPresione cualquier tecla para salir...");
+            Console.ReadLine();
+        }
+
+        private static void NumeroMayor(int num1, int num2, int num3)
+        {
+            // Determinar cuál es el mayor de los tres números
+            if (num1 >= num2 && num1 >= num3)
             {
-                Console.WriteLine("Números desde 1 hasta " + limite + ":");
-
-                for (int i = 1; i <= limite; i++)
-                {
-                    if (EsPrimo(i))
-                    {
-                        Console.WriteLine(i + " es primo.");
-                    }
-                    else
-                    {
-                        Console.WriteLine(i + " no es primo.");
-                    }
-                }
-
-                // Verificar específicamente los números 3, 5 y 7
-                MostrarPrimosEspecificos(limite);
+                Console.WriteLine("El primer número es el mayor.");
+            }
+            else if (num2 >= num1 && num2 >= num3)
+            {
+                Console.WriteLine("El segundo número es el mayor.");
             }
             else
             {
-                Console.WriteLine("Por favor, ingresa un número entero válido mayor o igual a 1.");
+                Console.WriteLine("El tercer número es el mayor.");
             }
         }
 
-        static bool EsPrimo(int numero)
+        private static void NumeroMenor(int num1, int num2, int num3)
         {
-            if (numero < 2) return false;
-            for (int i = 2; i <= Math.Sqrt(numero); i++)
+            // Determinar cuál es el menor de los tres números
+            if (num1 <= num2 && num1 <= num3)
             {
-                if (numero % i == 0) return false;
+                Console.WriteLine("El primer número es el menor.");
             }
-            return true;
-        }
-
-        static void MostrarPrimosEspecificos(int limite)
-        {
-            int[] primosEspecificos = { 3, 5, 7 };
-            foreach (int primo in primosEspecificos)
+            else if (num2 <= num1 && num2 <= num3)
             {
-                // Solo mostrar si el primo es menor que el límite
-                if (primo <= limite)
-                {
-                    Console.WriteLine(primo + " es primo.");
-                }
+                Console.WriteLine("El segundo número es el menor.");
+            }
+            else
+            {
+                Console.WriteLine("El tercer número es el menor.");
             }
         }
     }
