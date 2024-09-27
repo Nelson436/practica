@@ -4,66 +4,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Numeros_de_mayor_a_menor
+namespace Calculadora_1
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            int num1 = 0;
-            int num2 = 0;
-            int num3 = 0;
+            // Inicialización de los números
+            double num1 = 20;
+            double num2 = 8;
 
-            // Pedir al usuario que ingrese tres números
-            Console.WriteLine("Dame el primer número");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            // Instancia de la clase operaciones
+            Operaciones op = new Operaciones();
+            double suma = op.Suma(num1, num2);
+            double resta = op.Resta(num1, num2);
+            double multiplicacion = op.Multp(num1, num2);
+            double division = op.Div(num1, num2);
 
-            Console.WriteLine("Dame el segundo número");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            // Mostrar los resultados en la consola
+            Console.WriteLine("Resultados de las operaciones:");
+            Console.WriteLine($"Suma: {suma}");
+            Console.WriteLine($"Resta: {resta}");
+            Console.WriteLine($"Multiplicación: {multiplicacion}");
+            Console.WriteLine($"División: {division}");
 
-            Console.WriteLine("Dame el tercer número");
-            num3 = Convert.ToInt32(Console.ReadLine());
+            // Pausa para que el usuario pueda ver los resultados
+            Console.WriteLine("\nPresiona cualquier tecla para salir...");
+            Console.ReadKey();
+        }
+    }
 
-            // Llamar a los métodos para determinar el mayor y menor número
-            NumeroMayor(num1, num2, num3);
-            NumeroMenor(num1, num2, num3);
-
-            // Pausar la consola para que el usuario vea los resultados antes de cerrar
-            Console.WriteLine("\nPresione cualquier tecla para salir...");
-            Console.ReadLine();
+    // Clase para realizar operaciones matemáticas básicas.
+    class Operaciones
+    {
+        // Método para sumar dos números.
+        public double Suma(double x, double y)
+        {
+            return x + y;
         }
 
-        private static void NumeroMayor(int num1, int num2, int num3)
+        // Método para restar dos números.
+        public double Resta(double x, double y)
         {
-            // Determinar cuál es el mayor de los tres números
-            if (num1 >= num2 && num1 >= num3)
+            return x - y;
+        }
+
+        // Método para multiplicar dos números.
+        public double Multp(double x, double y)
+        {
+            if (x != 0 && y != 0)
             {
-                Console.WriteLine("El primer número es el mayor.");
-            }
-            else if (num2 >= num1 && num2 >= num3)
-            {
-                Console.WriteLine("El segundo número es el mayor.");
+                return x * y;
             }
             else
             {
-                Console.WriteLine("El tercer número es el mayor.");
+                Console.WriteLine("Uno de las variables es 0, por lo que el resultado será 0.");
+                return 0;
             }
         }
 
-        private static void NumeroMenor(int num1, int num2, int num3)
+        // Método para dividir dos números.
+        public double Div(double x, double y)
         {
-            // Determinar cuál es el menor de los tres números
-            if (num1 <= num2 && num1 <= num3)
+            if (y != 0)
             {
-                Console.WriteLine("El primer número es el menor.");
-            }
-            else if (num2 <= num1 && num2 <= num3)
-            {
-                Console.WriteLine("El segundo número es el menor.");
+                return x / y;
             }
             else
             {
-                Console.WriteLine("El tercer número es el menor.");
+                Console.WriteLine("El denominador es 0, no se puede dividir entre 0.");
+                return 0;
             }
         }
     }
